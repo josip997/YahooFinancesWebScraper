@@ -3,6 +3,8 @@ import time
 import requests, pandas, lxml
 from lxml import html
 
+import json
+
 #formatiranje datuma za link
 def format_date(date_datetime):
     date_timetouple=date_datetime.timetuple()
@@ -73,6 +75,14 @@ if __name__ == '__main__':
 
     #html sa podacima
     price_history = scrape_page(url,header)
+    
+    with open('price_history.txt', 'w') as filehandle:
+        for listitem in price_history[0].values:
+            filehandle.write('%s\n' % listitem)
+
+    #print(price_history[0].values[3])
+    
+
 
     
 
